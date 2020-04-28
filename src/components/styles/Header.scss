@@ -1,0 +1,12 @@
+@import '../../storage/mixins/mixins.scss';
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include adaptive(tablet) {
+    flex-wrap: wrap;
+    line-height: 3em;
+  }
+}
