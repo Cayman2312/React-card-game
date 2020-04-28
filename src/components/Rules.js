@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './styles/Rules.scss';
 
 export default function Rules() {
-  const [cls, setCls] = useState('Rules start');
+  const ref = useRef(null);
 
   useEffect(() => {
-    setCls('Rules');
-    return () => {
-      setCls('Rules start');
-    };
-  }, [cls]);
+    setTimeout(() => {
+      ref.current.classList.add('appeared');
+    }, 20);
+  }, []);
 
   return (
-    <div className={cls}>
+    <div ref={ref} className="Rules">
       <h3>Правила игры</h3>
       <p>
         Приветствуем вас на странице с нашей игрой. Для победы необходимо

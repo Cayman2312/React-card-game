@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './styles/About.scss';
 
 export default function About() {
-  return <div></div>;
+  const ref = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      ref.current.classList.add('appeared');
+    }, 20);
+  }, []);
+
+  return (
+    <div ref={ref} className="About">
+      <h3>Коротко о создании игры</h3>
+      <p>
+        Игра была создана в рамках обучения по нативному JS, впоследствие
+        перенесена на React JS в рамаках практикума
+      </p>
+    </div>
+  );
 }
