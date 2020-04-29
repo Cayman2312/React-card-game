@@ -10,6 +10,11 @@
   position: relative;
   user-select: none;
 
+  &.start {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+
   &.show {
     transform: rotateY(180deg);
   }

@@ -7,6 +7,7 @@ export default function Cards({ cards, onClick }) {
     <>
       {cards.map((card) => (
         <Card
+          delay={card.id}
           key={card.id}
           id={card.id}
           status={card.status}

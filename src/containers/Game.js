@@ -6,33 +6,8 @@ import Cards from '../components/Cards/Cards';
 
 export default class Game extends Component {
   state = {
-    cardAmount: 4,
-    cards: [
-      {
-        id: 1,
-        img: '/images/1.jpg',
-        show: false,
-        status: false,
-      },
-      {
-        id: 2,
-        img: '/images/2.jpg',
-        show: false,
-        status: false,
-      },
-      {
-        id: 3,
-        img: '/images/1.jpg',
-        show: false,
-        status: false,
-      },
-      {
-        id: 4,
-        img: '/images/2.jpg',
-        show: false,
-        status: false,
-      },
-    ],
+    cardAmount: 20,
+    cards: [],
     activeCard: null,
     avalibleCompare: true,
   };
@@ -81,7 +56,11 @@ export default class Game extends Component {
         setTimeout(() => {
           cards.find((card) => card.id === currentCard.id).show = false;
           cards.find((card) => card.id === activeCard.id).show = false;
-          this.setState({ cards, activeCard: null, avalibleCompare: true });
+          this.setState({
+            cards,
+            activeCard: null,
+            avalibleCompare: true,
+          });
         }, 600);
       }
     }, 0);
@@ -92,7 +71,27 @@ export default class Game extends Component {
     setTimeout(this.getCards, 100);
   }
 
-  getCards() {}
+  getCards(amount) {
+    let arr = new Array(amount / 2)
+      .fill('')
+      .map((item) => Math.round(Math.random() * 19) + 1);
+    let imgArr = arr.concat(arr).sort(() => Math.random() - 0.5);
+
+    const cards = new Array(amount).fill('').map((_, index) => {
+      return {
+        id: index,
+        img: `/images/${imgArr[index]}.jpg`,
+        show: false,
+        status: false,
+      };
+    });
+
+    this.setState({ cards });
+  }
+
+  componentDidMount() {
+    this.getCards(this.state.cardAmount);
+  }
 
   render() {
     return (
