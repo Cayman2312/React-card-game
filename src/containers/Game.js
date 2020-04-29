@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import Popup from './Popup';
 import Cards from '../components/Cards/Cards';
 
+let condition = true;
+
 export default class Game extends Component {
   state = {
     cardAmount: null,
@@ -11,6 +13,20 @@ export default class Game extends Component {
     activeCard: null,
     avalibleCompare: true,
   };
+
+  checkWin() {
+    const cards = this.state.cards;
+    if (cards.every((card) => card.status)) {
+      this.props.winGame();
+    }
+  }
+
+  restartGame() {
+    this.setState({ cardAmount: null, cards: [] });
+    setTimeout(() => {
+      condition = true;
+    }, 1000);
+  }
 
   compareCards(cardId) {
     if (!this.state.avalibleCompare) {
@@ -39,8 +55,6 @@ export default class Game extends Component {
 
       let activeCard = this.state.activeCard;
       let cards = [...this.state.cards];
-      // console.log('activeCard ', activeCard);
-      // console.log('currentCard :>> ', currentCard);
 
       if (
         activeCard.id !== currentCard.id &&
@@ -50,6 +64,7 @@ export default class Game extends Component {
           cards.find((card) => card.id === currentCard.id).status = true;
           cards.find((card) => card.id === activeCard.id).status = true;
           this.setState({ cards, activeCard: null });
+          this.checkWin();
         }, 300);
       } else {
         this.setState({ avalibleCompare: false });
@@ -96,9 +111,13 @@ export default class Game extends Component {
     this.getCards(this.state.cardAmount);
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log('cdu :>> ');
-  // }
+  componentDidUpdate() {
+    if (this.props.gameStatus === 'restart' && condition) {
+      condition = false;
+      console.log('restart :>> ');
+      this.restartGame();
+    }
+  }
 
   render() {
     return (
