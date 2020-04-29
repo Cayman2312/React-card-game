@@ -25,7 +25,7 @@ export default class Game extends Component {
     this.setState({ cardAmount: null, cards: [] });
     setTimeout(() => {
       condition = true;
-    }, 1000);
+    }, 100);
   }
 
   compareCards(cardId) {
@@ -114,7 +114,6 @@ export default class Game extends Component {
   componentDidUpdate() {
     if (this.props.gameStatus === 'restart' && condition) {
       condition = false;
-      console.log('restart :>> ');
       this.restartGame();
     }
   }

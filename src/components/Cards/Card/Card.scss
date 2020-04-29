@@ -1,3 +1,5 @@
+@import '../../../storage/mixins/mixins.scss';
+
 .Card {
   display: inline-block;
   width: 137px;
@@ -9,6 +11,17 @@
   transform-style: preserve-3d;
   position: relative;
   user-select: none;
+
+  @include adaptive(tablet) {
+    width: 110px;
+    height: 150px;
+    margin: 5px;
+  }
+  @include adaptive(phone) {
+    width: calc(100% / 5.4);
+    height: 100px;
+    margin: 2px;
+  }
 
   &.start {
     transform: translateY(-40px);

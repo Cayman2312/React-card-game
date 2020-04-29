@@ -1,4 +1,13 @@
+@import '../../storage/mixins/mixins.scss';
+
 .Nav {
+  @include adaptive(phone) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
   a {
     padding: 10px 20px;
     color: #fff;
@@ -7,6 +16,11 @@
     background: #ccc3;
     border: 1px solid #fff;
     transition: all 300ms ease-in-out;
+
+    @include adaptive(phone) {
+      margin: 5px 0;
+      padding: 0;
+    }
 
     &:first-of-type {
       margin-left: 0;

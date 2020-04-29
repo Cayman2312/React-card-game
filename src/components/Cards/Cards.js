@@ -4,7 +4,7 @@ import Card from './Card/Card';
 
 export default function Cards({ cards, onClick }) {
   return (
-    <>
+    <div>
       {cards.map((card) => (
         <Card
           delay={card.id}
@@ -16,6 +16,6 @@ export default function Cards({ cards, onClick }) {
           onClick={(card) => onClick(card)}
         />
       ))}
-    </>
+    </div>
   );
 }

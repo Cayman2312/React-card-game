@@ -51,6 +51,7 @@ export default class App extends React.Component {
 
   winGame() {
     this.setState({ gameStatus: 'win' });
+    clearTimeout(timeout);
   }
 
   componentWillUnmount() {

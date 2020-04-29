@@ -11,4 +11,8 @@
   margin: 0 auto;
   color: #fff;
   padding: 20px;
+
+  @include adaptive(tablet) {
+    text-align: center;
+  }
 }
