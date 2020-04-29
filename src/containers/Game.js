@@ -68,6 +68,7 @@ export default class Game extends Component {
 
   setCardAmount(number) {
     this.setState({ cardAmount: number });
+    this.props.setTimeLeft(number);
     setTimeout(() => {
       this.getCards(this.state.cardAmount);
     }, 100);
@@ -94,6 +95,10 @@ export default class Game extends Component {
   componentDidMount() {
     this.getCards(this.state.cardAmount);
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log('cdu :>> ');
+  // }
 
   render() {
     return (

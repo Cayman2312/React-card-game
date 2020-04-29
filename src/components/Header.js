@@ -6,7 +6,8 @@ export default function Header(props) {
   return (
     <div className="Header">
       <h1>Поиск совпадений</h1>
-      <Nav isStarted={props.started} />
+      {props.isStarted ? <h2>Осталось времени: {props.timeLeft}</h2> : null}
+      <Nav startGame={props.startGame} isStarted={props.isStarted} />
     </div>
   );
 }

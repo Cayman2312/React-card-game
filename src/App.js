@@ -9,25 +9,56 @@ import Game from './containers/Game';
 
 export default class App extends React.Component {
   state = {
-    gameStarted: true,
+    gameStarted: false,
+    timeLeft: null,
   };
+
+  startGame() {
+    if (!this.state.gameStarted) {
+      this.setState({ gameStarted: true });
+    } else if (window.confirm('Вы действительно хотите начать заново?')) {
+      this.setState({ gameStarted: false });
+      setTimeout(() => {
+        document.getElementById('newGame').click();
+      }, 100);
+    }
+  }
+
+  setTimeLeft(number) {
+    this.setState({ timeLeft: number * 3 });
+  }
 
   render() {
     return (
       <div className="App">
         <div className="wrapper">
-          <Header isStarted={this.state.gameStarted} />
+          <Header
+            startGame={this.startGame.bind(this)}
+            isStarted={this.state.gameStarted}
+            timeLeft={this.state.timeLeft}
+          />
           <hr />
           <Switch>
             <Route
               path="/game"
               render={() => {
-                return <Game isStarted={this.state.gameStarted} />;
+                return (
+                  <Game
+                    setTimeLeft={this.setTimeLeft.bind(this)}
+                    isStarted={this.state.gameStarted}
+                  />
+                );
               }}
             />
             <Route path="/rules" component={Rules} />
             <Route path="/about" component={About} />
-            <Route path="/" exact component={Main} />
+            <Route
+              path="/"
+              exact
+              render={() => {
+                return <Main startGame={this.startGame.bind(this)} />;
+              }}
+            />
           </Switch>
         </div>
       </div>
