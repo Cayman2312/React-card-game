@@ -17,10 +17,12 @@ export default function Card(props) {
   }
 
   useEffect(() => {
-    setState(false);
     setTimeout(() => {
-      ref.current.style = '';
-    }, ref.current.id * 50);
+      setState(false);
+      setTimeout(() => {
+        ref.current.style = '';
+      }, ref.current.id * 50);
+    }, 50);
   }, []);
 
   return (

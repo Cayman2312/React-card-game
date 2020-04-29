@@ -6,7 +6,7 @@ import Cards from '../components/Cards/Cards';
 
 export default class Game extends Component {
   state = {
-    cardAmount: 20,
+    cardAmount: null,
     cards: [],
     activeCard: null,
     avalibleCompare: true,
@@ -68,16 +68,18 @@ export default class Game extends Component {
 
   setCardAmount(number) {
     this.setState({ cardAmount: number });
-    setTimeout(this.getCards, 100);
+    setTimeout(() => {
+      this.getCards(this.state.cardAmount);
+    }, 100);
   }
 
   getCards(amount) {
-    let arr = new Array(amount / 2)
+    let arr = new Array(+amount / 2)
       .fill('')
       .map((item) => Math.round(Math.random() * 19) + 1);
     let imgArr = arr.concat(arr).sort(() => Math.random() - 0.5);
 
-    const cards = new Array(amount).fill('').map((_, index) => {
+    const cards = new Array(+amount).fill('').map((_, index) => {
       return {
         id: index,
         img: `/images/${imgArr[index]}.jpg`,
