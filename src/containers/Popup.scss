@@ -1,0 +1,54 @@
+.Popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0005;
+  color: #000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__window {
+    min-width: 150px;
+    min-height: 250px;
+    background-color: #fffa;
+    border: 2px solid #000;
+    border-radius: 10px;
+    z-index: 10;
+    box-shadow: 10px 10px 10px #000;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  &__input {
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    width: 120px;
+  }
+  &__submit {
+    padding: 5px 10px;
+    width: 120px;
+    cursor: pointer;
+  }
+
+  &__validation {
+    font-style: italic;
+
+    &.true {
+      color: green;
+      font-weight: bold;
+    }
+  }
+}

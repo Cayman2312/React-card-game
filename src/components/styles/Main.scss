@@ -1,0 +1,29 @@
+.Main {
+  p {
+    margin-bottom: 10px;
+    font-size: 1.4em;
+
+    a {
+      color: orange;
+      text-decoration: underline;
+      position: relative;
+      text-decoration: none;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        margin: 0 auto;
+        background-color: orange;
+        transition-duration: 300ms;
+      }
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}

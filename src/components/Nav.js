@@ -2,12 +2,14 @@ import React from 'react';
 import './styles/Nav.scss';
 import { NavLink } from 'react-router-dom';
 
-export default function Nav() {
+export default function Nav(props) {
   return (
     <div className="Nav">
-      <NavLink to="/">Начать игру</NavLink>
-      <NavLink to="/rules">Правила</NavLink>
-      <NavLink to="/about">О нас</NavLink>
+      <NavLink to="/game">
+        {props.isStarted ? 'Начать новую игру' : 'Начать игру'}
+      </NavLink>
+      {props.isStarted ? null : <NavLink to="/rules">Правила</NavLink>}
+      {props.isStarted ? null : <NavLink to="/about">О нас</NavLink>}
     </div>
   );
 }
