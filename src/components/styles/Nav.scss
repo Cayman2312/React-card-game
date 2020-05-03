@@ -6,20 +6,30 @@
     flex-direction: column;
     width: 100%;
     text-align: center;
+    border: 1px solid #fff;
+
+    @include adaptive(phone) {
+      border: none;
+    }
   }
 
   a {
-    padding: 10px 20px;
+    padding: 10px 30px;
     color: #fff;
     text-decoration: none;
-    margin: 0 10px;
     background: #ccc3;
     border: 1px solid #fff;
-    transition: all 300ms ease-in-out;
+    transition: all 200ms ease-in-out;
+
+    @include adaptive(smartphone) {
+      padding: 10px 30px;
+      margin-right: 10px;
+    }
 
     @include adaptive(phone) {
       margin: 5px 0;
       padding: 0;
+      line-height: 2.5;
     }
 
     &:first-of-type {
@@ -28,7 +38,15 @@
 
     &:hover {
       background: #ccc7;
-      padding: 15px 20px;
+      padding: 32px 30px;
+
+      @include adaptive(smartphone) {
+        padding: 10px 30px;
+      }
+
+      @include adaptive(phone) {
+        padding: 0;
+      }
     }
   }
 }

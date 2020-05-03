@@ -104,7 +104,20 @@ export default class Game extends Component {
       };
     });
 
-    this.setState({ cards });
+    this.showCards(cards);
+  }
+
+  showCards(arr) {
+    if (arr.length === 0) {
+      return;
+    } else {
+      let cardsNew = this.state.cards;
+      cardsNew.push(arr.pop());
+      setTimeout(() => {
+        this.setState({ cards: cardsNew });
+        this.showCards(arr);
+      }, 30);
+    }
   }
 
   componentDidMount() {

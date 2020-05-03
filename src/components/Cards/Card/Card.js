@@ -19,15 +19,11 @@ export default function Card(props) {
   useEffect(() => {
     setTimeout(() => {
       setState(false);
-      setTimeout(() => {
-        ref.current.style = '';
-      }, ref.current.id * 50);
-    }, 50);
+    }, 100);
   }, []);
 
   return (
     <div
-      style={{ transitionDelay: `${props.delay * 50}ms` }}
       className={cls.join(' ')}
       ref={ref}
       data-id={props.id}
