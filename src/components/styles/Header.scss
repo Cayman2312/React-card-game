@@ -5,6 +5,10 @@
   align-items: center;
   justify-content: space-between;
 
+  h1 {
+    font-family: 'Segoe Print', Arial, monospace;
+  }
+
   @include adaptive(tablet) {
     flex-wrap: wrap;
     line-height: 3em;

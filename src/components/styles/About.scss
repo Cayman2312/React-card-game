@@ -2,6 +2,9 @@
   transition: all 500ms ease-in-out;
   transform: translateY(50px);
   opacity: 0.2;
+  padding: 20px;
+  background: #0008;
+  border-radius: 20px;
 
   &.appeared {
     transform: translateY(0);

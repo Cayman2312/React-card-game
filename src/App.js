@@ -32,8 +32,22 @@ export default class App extends React.Component {
     }
   }
 
-  setTimeLeft(number) {
-    const timer = number * 3;
+  setTimeLeft(number, difficulty) {
+    let timer;
+    switch (difficulty) {
+      case 1:
+        timer = number * 4;
+        break;
+      case 2:
+        timer = number * 3;
+        break;
+      case 3:
+        timer = Math.round(number * 2.5);
+        break;
+      default:
+        break;
+    }
+
     this.setState({ timeLeft: timer });
     this.startTimer();
     timeout = setTimeout(() => {

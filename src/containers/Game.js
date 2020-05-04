@@ -12,6 +12,7 @@ export default class Game extends Component {
     cards: [],
     activeCard: null,
     avalibleCompare: true,
+    isRepeat: false,
   };
 
   checkWin() {
@@ -81,17 +82,18 @@ export default class Game extends Component {
     }, 0);
   }
 
-  setCardAmount(number) {
-    this.setState({ cardAmount: number });
-    this.props.setTimeLeft(number);
+  setProperties({ number, difficulty, isRepeat }) {
+    isRepeat === 1 ? (isRepeat = false) : (isRepeat = true);
+    this.setState({ cardAmount: number, isRepeat });
+    this.props.setTimeLeft(number, difficulty);
     setTimeout(() => {
-      this.getCards(this.state.cardAmount);
+      this.getCards(this.state.cardAmount, this.state.isRepeat);
     }, 100);
   }
 
-  getCards(amount, repeat = false) {
+  getCards(amount, isRepeat) {
     let arr;
-    if (repeat === true) {
+    if (isRepeat === true) {
       arr = new Array(+amount / 2)
         .fill('')
         .map((item) => Math.round(Math.random() * 19) + 1);
@@ -105,9 +107,6 @@ export default class Game extends Component {
         arr.push(item);
       }
     }
-
-    console.log(arr);
-    debugger;
 
     let imgArr = arr.concat(arr).sort(() => Math.random() - 0.5);
 
@@ -138,7 +137,7 @@ export default class Game extends Component {
 
   componentDidMount() {
     if (this.state.cardAmount !== null) {
-      this.getCards(this.state.cardAmount);
+      this.getCards(this.state.cardAmount, this.state.cardsRepeat);
     }
   }
 
@@ -154,7 +153,7 @@ export default class Game extends Component {
       <>
         {!this.props.isStarted ? <Redirect to="/" /> : null}
         {!this.state.cardAmount ? (
-          <Popup setCardAmount={(number) => this.setCardAmount(number)} />
+          <Popup setProperties={(settings) => this.setProperties(settings)} />
         ) : (
           <Cards
             cards={this.state.cards}
