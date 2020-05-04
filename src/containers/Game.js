@@ -89,10 +89,26 @@ export default class Game extends Component {
     }, 100);
   }
 
-  getCards(amount) {
-    let arr = new Array(+amount / 2)
-      .fill('')
-      .map((item) => Math.round(Math.random() * 19) + 1);
+  getCards(amount, repeat = false) {
+    let arr;
+    if (repeat === true) {
+      arr = new Array(+amount / 2)
+        .fill('')
+        .map((item) => Math.round(Math.random() * 19) + 1);
+    } else {
+      let set = new Set();
+      while (set.size < +amount / 2) {
+        set.add(Math.round(Math.random() * 19) + 1);
+      }
+      arr = [];
+      for (let item of set.values()) {
+        arr.push(item);
+      }
+    }
+
+    console.log(arr);
+    debugger;
+
     let imgArr = arr.concat(arr).sort(() => Math.random() - 0.5);
 
     const cards = new Array(+amount).fill('').map((_, index) => {
@@ -121,7 +137,9 @@ export default class Game extends Component {
   }
 
   componentDidMount() {
-    this.getCards(this.state.cardAmount);
+    if (this.state.cardAmount !== null) {
+      this.getCards(this.state.cardAmount);
+    }
   }
 
   componentDidUpdate() {
