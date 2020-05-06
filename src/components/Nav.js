@@ -9,7 +9,7 @@ export default function Nav(props) {
         {props.isStarted ? 'Начать новую игру' : 'Начать игру'}
       </NavLink>
       {props.isStarted ? null : <NavLink to="/rules">Правила</NavLink>}
-      {props.isStarted ? null : <NavLink to="/about">О нас</NavLink>}
+      {props.isStarted ? null : <NavLink to="/about">Об игре</NavLink>}
     </div>
   );
 }

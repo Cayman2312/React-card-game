@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Popup.scss';
 import { Range, getTrackBackground } from 'react-range';
+import { Redirect } from 'react-router-dom';
 
 export default class Popup extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class Popup extends Component {
       values: [20],
       difficulty: [2],
       isRepeat: [1],
+      redirect: false,
     };
   }
 
@@ -19,7 +21,15 @@ export default class Popup extends Component {
 
   render() {
     return (
-      <div className="Popup">
+      <div
+        className="Popup"
+        onClick={(e) => {
+          if (e.target.className === 'Popup') {
+            this.setState({ redirect: true });
+          }
+        }}
+      >
+        {this.state.redirect ? <Redirect to="/" /> : null}
         <div className="Popup__window">
           <h3 className="Popup__title">Выберите параметры игры:</h3>
           <form

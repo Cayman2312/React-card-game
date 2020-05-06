@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import Header from './components/Header';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Main from './components/Main';
 import Rules from './components/Rules';
 import About from './components/About';
@@ -9,7 +9,7 @@ import Game from './containers/Game';
 
 let timer, timeout;
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     gameStarted: false,
     timeLeft: null,
@@ -128,3 +128,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default withRouter(App);
