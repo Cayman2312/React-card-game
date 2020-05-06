@@ -1,10 +1,12 @@
+@import '../storage/mixins/mixins.scss';
+
 .Popup {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #0005;
+  background-color: #0009;
   color: #000;
 
   display: flex;
@@ -41,6 +43,19 @@
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
+
+    @include adaptive(phone) {
+      font-size: 1.3em;
+    }
+  }
+
+  &__output {
+    margin-top: 10px;
+    font-size: 1.5em;
+
+    @include adaptive(phone) {
+      font-size: 1.2em;
+    }
   }
 
   &__submit {

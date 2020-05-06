@@ -19,7 +19,7 @@ class App extends React.Component {
   startGame() {
     if (!this.state.gameStarted || this.state.gameStatus === 'restart') {
       this.setState({ gameStarted: true, gameStatus: '' });
-    } else if (window.confirm('Вы действительно хотите начать заново?')) {
+    } else {
       clearInterval(timer);
       clearTimeout(timeout);
       this.setState({

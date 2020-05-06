@@ -105,13 +105,7 @@ export default class Popup extends Component {
                 </div>
               )}
             />
-            <output
-              style={{
-                marginTop: '10px',
-                fontSize: '1.5em',
-              }}
-              id="cardsAmount"
-            >
+            <output className="Popup__output" id="cardsAmount">
               Количество карточек:{' '}
               <span style={{ fontWeight: 'bold' }}>{this.state.values[0]}</span>
             </output>
@@ -181,13 +175,7 @@ export default class Popup extends Component {
                 </div>
               )}
             />
-            <output
-              style={{
-                marginTop: '10px',
-                fontSize: '1.5em',
-              }}
-              id="cardsAmount"
-            >
+            <output className="Popup__output" id="cardsAmount">
               Сложность:{' '}
               {this.state.difficulty[0] === 1 ? (
                 <b>низкая {'😃'}</b>
@@ -263,20 +251,19 @@ export default class Popup extends Component {
                 </div>
               )}
             />
-            <output
-              style={{
-                marginTop: '10px',
-                fontSize: '1.5em',
-              }}
-              id="cardsAmount"
-            >
+            <output className="Popup__output" id="cardsAmount">
               Картинки
               {this.state.isRepeat[0] === 0 ? (
-                ' '
+                <>
+                  <span style={{ fontWeight: 'bold' }}> могут </span>
+                  повторяться
+                </>
               ) : (
-                <span style={{ fontWeight: 'bold' }}> НЕ </span>
+                <>
+                  <span style={{ fontWeight: 'bold' }}> НЕ </span>
+                  повторяются
+                </>
               )}
-              повторяются
             </output>
             <br />
             <input type="submit" className="Popup__submit" value="Старт!" />
