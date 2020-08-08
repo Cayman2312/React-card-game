@@ -11,6 +11,10 @@
 # production
 /build
 
+# config
+/prettier.config.js
+/settings.eslintrc.txt
+
 # misc
 .DS_Store
 .env.local
@@ -21,6 +25,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-.config.js
-.eslintrc.txt
