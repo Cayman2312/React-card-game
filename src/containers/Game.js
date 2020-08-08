@@ -4,8 +4,6 @@ import { Redirect } from 'react-router-dom'
 import Popup from './Popup'
 import Cards from '../components/Cards/Cards'
 
-let condition = true
-
 export default class Game extends Component {
   state = {
     cardAmount: null,
@@ -15,21 +13,18 @@ export default class Game extends Component {
     isRepeat: false,
   }
 
-  checkWin() {
+  checkWin = () => {
     const cards = this.state.cards
     if (cards.every((card) => card.status)) {
       this.props.winGame()
     }
   }
 
-  restartGame() {
+  restartGame = () => {
     this.setState({ cardAmount: null, cards: [] })
-    setTimeout(() => {
-      condition = true
-    }, 100)
   }
 
-  compareCards(cardId) {
+  compareCards = (cardId) => {
     if (!this.state.avalibleCompare) {
       return
     }
@@ -82,18 +77,15 @@ export default class Game extends Component {
     }, 0)
   }
 
-  setProperties({ number, difficulty, isRepeat }) {
-    isRepeat === 1 ? (isRepeat = false) : (isRepeat = true)
-    this.setState({ cardAmount: number, isRepeat })
-    this.props.setTimeLeft(number, difficulty)
-    setTimeout(() => {
-      this.getCards(this.state.cardAmount, this.state.isRepeat)
-    }, 100)
+  setProperties = ({ cardAmount, difficulty, isRepeat }) => {
+    this.setState({ cardAmount, isRepeat })
+    this.props.setTimeLeft(cardAmount, difficulty)
+    this.getCards(cardAmount, isRepeat)
   }
 
-  getCards(amount, isRepeat) {
+  getCards = (amount, isRepeat) => {
     let arr
-    if (isRepeat === true) {
+    if (isRepeat) {
       arr = new Array(+amount / 2)
         .fill('')
         .map(() => Math.round(Math.random() * 19) + 1)
@@ -132,14 +124,13 @@ export default class Game extends Component {
 
   componentDidMount() {
     if (this.state.cardAmount !== null) {
-      this.getCards(this.state.cardAmount, this.state.cardsRepeat)
+      this.getCards(this.state.cardAmount, this.state.isRepeat)
     }
   }
 
   componentDidUpdate() {
-    if (this.props.gameStatus === 'restart' && condition) {
-      condition = false
-      this.restartGame()
+    if (this.props.gameStatus === 'restart') {
+      setTimeout(this.restartGame, 100)
     }
   }
 
@@ -148,7 +139,7 @@ export default class Game extends Component {
       <>
         {!this.props.isStarted ? <Redirect to="/" /> : null}
         {!this.state.cardAmount ? (
-          <Popup setProperties={(settings) => this.setProperties(settings)} />
+          <Popup setProperties={this.setProperties} />
         ) : (
           <Cards
             cards={this.state.cards}

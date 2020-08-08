@@ -14,9 +14,16 @@ export default class Popup extends Component {
     }
   }
 
-  onSubmit(e, number, difficulty, isRepeat) {
+  onSubmit = (e) => {
     e.preventDefault()
-    this.props.setProperties({ number, difficulty, isRepeat })
+    const initialState = { ...this.state }
+    let { values, difficulty, isRepeat } = initialState
+
+    const cardAmount = values[0]
+    difficulty = difficulty[0]
+    isRepeat = isRepeat[0] !== 1
+
+    this.props.setProperties({ cardAmount, difficulty, isRepeat })
   }
 
   render() {
@@ -32,17 +39,7 @@ export default class Popup extends Component {
         {this.state.redirect ? <Redirect to="/" /> : null}
         <div className="Popup__window">
           <h3 className="Popup__title">Выберите параметры игры:</h3>
-          <form
-            action=""
-            onSubmit={(e) => {
-              this.onSubmit(
-                e,
-                this.state.values[0],
-                this.state.difficulty[0],
-                this.state.isRepeat[0]
-              )
-            }}
-          >
+          <form action="" onSubmit={this.onSubmit}>
             <Range
               values={this.state.values}
               step={2}
