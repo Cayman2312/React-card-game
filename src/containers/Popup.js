@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import './Popup.scss';
-import { Range, getTrackBackground } from 'react-range';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from 'react'
+import './Popup.scss'
+import { Range, getTrackBackground } from 'react-range'
+import { Redirect } from 'react-router-dom'
 
 export default class Popup extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       values: [20],
       difficulty: [2],
       isRepeat: [1],
       redirect: false,
-    };
+    }
   }
 
   onSubmit(e, number, difficulty, isRepeat) {
-    e.preventDefault();
-    this.props.setProperties({ number, difficulty, isRepeat });
+    e.preventDefault()
+    this.props.setProperties({ number, difficulty, isRepeat })
   }
 
   render() {
@@ -25,7 +25,7 @@ export default class Popup extends Component {
         className="Popup"
         onClick={(e) => {
           if (e.target.className === 'Popup') {
-            this.setState({ redirect: true });
+            this.setState({ redirect: true })
           }
         }}
       >
@@ -40,7 +40,7 @@ export default class Popup extends Component {
                 this.state.values[0],
                 this.state.difficulty[0],
                 this.state.isRepeat[0]
-              );
+              )
             }}
           >
             <Range
@@ -270,6 +270,6 @@ export default class Popup extends Component {
           </form>
         </div>
       </div>
-    );
+    )
   }
 }

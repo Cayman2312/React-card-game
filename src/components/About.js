@@ -1,14 +1,14 @@
-import React, { useRef, useEffect } from 'react';
-import './styles/About.scss';
+import React, { useRef, useEffect } from 'react'
+import './styles/About.scss'
 
 export default function About() {
-  const ref = useRef(null);
+  const ref = useRef(null)
 
   useEffect(() => {
     setTimeout(() => {
-      ref.current.classList.add('appeared');
-    }, 20);
-  }, []);
+      ref.current.classList.add('appeared')
+    }, 20)
+  }, [])
 
   return (
     <div ref={ref} className="About">
@@ -21,5 +21,5 @@ export default function About() {
         По своей сути является моим первым React-приложением.
       </p>
     </div>
-  );
+  )
 }

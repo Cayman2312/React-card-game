@@ -11,5 +11,5 @@ export default function Nav(props) {
       {props.isStarted ? null : <NavLink to="/rules">Правила</NavLink>}
       {props.isStarted ? null : <NavLink to="/about">Об игре</NavLink>}
     </div>
-  );
+  )
 }

@@ -1,26 +1,28 @@
-import React, { useRef, useEffect, useState } from 'react';
-import './Card.scss';
+import React, { useRef, useEffect, useState } from 'react'
+import './Card.scss'
 
 export default function Card(props) {
-  const [state, setState] = useState(true);
-  const ref = useRef(null);
+  const [state, setState] = useState(true)
+  const ref = useRef(null)
 
-  const cls = ['Card'];
+  const cls = ['Card']
   if (props.show) {
-    cls.push('show');
+    cls.push('show')
   }
   if (props.status) {
-    cls.push('success');
+    cls.push('success')
   }
   if (state) {
-    cls.push('start');
+    cls.push('start')
   }
 
   useEffect(() => {
     setTimeout(() => {
-      setState(false);
-    }, 100);
-  }, []);
+      setState(false)
+    }, 100)
+  }, [])
+
+  const srcCover = '/images/cover.jpg'
 
   return (
     <div
@@ -28,13 +30,13 @@ export default function Card(props) {
       ref={ref}
       data-id={props.id}
       onClick={(e) => {
-        props.onClick(e.target.dataset.id);
+        props.onClick(e.target.dataset.id)
       }}
     >
       <img
         className="front"
         data-id={props.id}
-        src="/images/cover.jpg"
+        src={srcCover}
         alt="front"
         draggable="false"
       />
@@ -46,5 +48,5 @@ export default function Card(props) {
         draggable="false"
       />
     </div>
-  );
+  )
 }

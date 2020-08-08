@@ -1,14 +1,14 @@
-import React, { useRef, useEffect } from 'react';
-import './styles/Rules.scss';
+import React, { useRef, useEffect } from 'react'
+import './styles/Rules.scss'
 
 export default function Rules() {
-  const ref = useRef(null);
+  const ref = useRef(null)
 
   useEffect(() => {
     setTimeout(() => {
-      ref.current.classList.add('appeared');
-    }, 20);
-  }, []);
+      ref.current.classList.add('appeared')
+    }, 20)
+  }, [])
 
   return (
     <div ref={ref} className="Rules">
@@ -25,5 +25,5 @@ export default function Rules() {
         Для старта нажмите "Начать игру".
       </p>
     </div>
-  );
+  )
 }

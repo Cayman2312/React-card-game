@@ -1,6 +1,6 @@
-import React from 'react';
-import './Cards.scss';
-import Card from './Card/Card';
+import React from 'react'
+import './Cards.scss'
+import Card from './Card/Card'
 
 export default function Cards({ cards, onClick }) {
   return (
@@ -18,5 +18,5 @@ export default function Cards({ cards, onClick }) {
             />
           ))}
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import React from 'react';
-import './styles/Main.scss';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import './styles/Main.scss'
+import { Link } from 'react-router-dom'
 
 export default function Main(props) {
   return (
@@ -17,5 +17,5 @@ export default function Main(props) {
         </Link>
       </p>
     </div>
-  );
+  )
 }
