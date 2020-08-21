@@ -11,9 +11,6 @@
 # production
 /build
 
-# config
-/prettier.config.js
-/settings.eslintrc.txt
 
 # misc
 .DS_Store

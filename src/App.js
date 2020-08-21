@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.scss'
 import Header from './components/Header'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Main from './components/Main'
 import Rules from './components/Rules'
 import About from './components/About'
@@ -16,7 +16,7 @@ class App extends React.Component {
     gameStatus: '',
   }
 
-  startGame() {
+  startGame = () => {
     if (!this.state.gameStarted || this.state.gameStatus === 'restart') {
       this.setState({ gameStarted: true, gameStatus: '' })
     } else {
@@ -32,30 +32,30 @@ class App extends React.Component {
     }
   }
 
-  setTimeLeft(number, difficulty) {
-    let timer
+  setTimeLeft = (number, difficulty) => {
+    let timeLeft
     switch (difficulty) {
       case 1:
-        timer = number * 4
+        timeLeft = number * 4
         break
       case 2:
-        timer = number * 3
+        timeLeft = number * 3
         break
       case 3:
-        timer = Math.round(number * 2.5)
+        timeLeft = Math.round(number * 2.5)
         break
       default:
         break
     }
 
-    this.setState({ timeLeft: timer })
+    this.setState({ timeLeft })
     this.startTimer()
     timeout = setTimeout(() => {
       this.setState({ gameStatus: 'lose' })
-    }, timer * 1000)
+    }, timeLeft * 1000)
   }
 
-  startTimer() {
+  startTimer = () => {
     timer = setInterval(() => {
       this.setState((prevState) => {
         return { timeLeft: prevState.timeLeft - 1 }
@@ -63,7 +63,7 @@ class App extends React.Component {
     }, 1000)
   }
 
-  winGame() {
+  winGame = () => {
     this.setState({ gameStatus: 'win' })
     clearTimeout(timeout)
   }
@@ -82,46 +82,38 @@ class App extends React.Component {
     }
   }
 
+  renderMain = () => <Main startGame={this.startGame} />
+
+  renderGame = () => {
+    if (this.state.gameStatus === 'win') {
+      return <h1>Поздравляем, Вы победили!</h1>
+    } else if (this.state.gameStatus === 'lose') {
+      return <h1>К сожалению Вы не успели за отведенное время...</h1>
+    } else
+      return (
+        <Game
+          setTimeLeft={this.setTimeLeft}
+          winGame={this.winGame}
+          gameStatus={this.state.gameStatus}
+        />
+      )
+  }
+
   render() {
     return (
       <div className="App">
         <div className="wrapper">
           <Header
-            startGame={this.startGame.bind(this)}
+            startGame={this.startGame}
             isStarted={this.state.gameStarted}
             timeLeft={this.state.timeLeft}
           />
           <hr />
           <Switch>
-            <Route
-              path="/game"
-              render={() => {
-                if (this.state.gameStatus === 'win') {
-                  return <h1>Поздравляем, Вы победили!</h1>
-                } else if (this.state.gameStatus === 'lose') {
-                  return (
-                    <h1>К сожалению Вы не успели за отведенное время...</h1>
-                  )
-                } else
-                  return (
-                    <Game
-                      setTimeLeft={this.setTimeLeft.bind(this)}
-                      isStarted={this.state.gameStarted}
-                      winGame={this.winGame.bind(this)}
-                      gameStatus={this.state.gameStatus}
-                    />
-                  )
-              }}
-            />
+            <Route path="/" exact render={this.renderMain} />
+            <Route path="/game" render={this.renderGame} />
             <Route path="/rules" component={Rules} />
             <Route path="/about" component={About} />
-            <Route
-              path="/"
-              exact
-              render={() => {
-                return <Main startGame={this.startGame.bind(this)} />
-              }}
-            />
           </Switch>
         </div>
       </div>
@@ -129,4 +121,4 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App)
+export default App

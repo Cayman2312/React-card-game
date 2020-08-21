@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Game.scss'
-import { Redirect } from 'react-router-dom'
 import Popup from './Popup'
 import Cards from '../components/Cards/Cards'
 
@@ -137,7 +136,6 @@ export default class Game extends Component {
   render() {
     return (
       <>
-        {!this.props.isStarted ? <Redirect to="/" /> : null}
         {!this.state.cardAmount ? (
           <Popup setProperties={this.setProperties} />
         ) : (
